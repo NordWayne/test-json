@@ -1,11 +1,11 @@
 import React from 'react';
 import './Post.css'
 
-const Post = ({post}) => {
+const Post = ({post, handleOpenPopup}) => {
     return (
-        <li className='post'>
-            <h2 className='post-title'>{post.title || 'Вася'}</h2>
-            <p className='post-description'>{post.body || 'estfsdfsdfasdfsdfas'}</p>
+        <li className='post' onClick={()=>handleOpenPopup(post)}>
+                <h2 className='post-title'>{post.title}</h2>
+                <p className='post-description'>{post.body}</p>
         </li>
     );
 };

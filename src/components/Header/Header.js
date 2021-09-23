@@ -1,17 +1,13 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import './Header.css'
 
-const Header = () => {
+const Header = ({handleOpenFormPopup}) => {
     return (
         <header>
             <nav>
-                <NavLink to='/' className='header-link' activeClassName='header-link_active'>
-                    Все посты
-                </NavLink>
-                <NavLink to='/create-post' className='header-link' activeClassName='header-link_active'>
+                <button  className='header-btn' onClick={handleOpenFormPopup}>
                     Создать пост
-                </NavLink>
+                </button>
             </nav>
         </header>
     );
