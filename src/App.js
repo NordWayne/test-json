@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+import PostsList from './components/PostsList/PostsList';
+import PostCreater from './components/PostCreater/PostCreater';
 import './App.css';
 
-function App() {
+const App = () => {
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(res => res.json())
+            .then(result => setPosts(result))
+    }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <div className="App">
+          <main>
+              <Switch>
+                <Route exact path='/'>
+                    <Header/>
+                    <PostsList posts={posts}/>
+                </Route>
+                <Route exact path='/create-post'>
+                    <Header/>
+                    <PostCreater/>
+                </Route>
+                <Route path='/:id'>
+
+                </Route>
+              </Switch>
+          </main>
+        </div>
+      </BrowserRouter>
   );
 }
 
